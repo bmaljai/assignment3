@@ -1,4 +1,4 @@
 package com.gamecodeschool.snake;
 
-public class Apple {
+public class Apple extends GameObject {
 }
