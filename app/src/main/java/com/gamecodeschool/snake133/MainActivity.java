@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
       //Some place holder code to make some basic draw calls
         drawView = new DrawView(this);
-        drawView.setBackgroundColor(Color.BLACK);
+        drawView.setBackgroundColor(Color.CYAN);
         setContentView(drawView);
 
     }

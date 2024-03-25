@@ -23,6 +23,9 @@ public class DrawView extends View {
         canvas.drawRect(33, 60, 77, 77, paint );
         paint.setColor(Color.YELLOW);
         canvas.drawRect(33, 33, 77, 60, paint );
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(42f);
+        canvas.drawText("Hello World",200, 800, paint);
 
     }
 
