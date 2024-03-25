@@ -243,6 +243,10 @@ class SnakeGame extends SurfaceView implements Runnable{
             mCanvas.drawText("Bejan Maljai", 650, 120, mPaintNames);
             mCanvas.drawText("Tiglath Eashoian", 530, 240, mPaintNames);
 
+            //Draw the word pause for the pause button ///TODO make into a layout and
+            //maybe its own class
+            mCanvas.drawText("Pause", 30, 350,mPaintNames);
+
             // Draw the apple and the snake
             mApple.draw(mCanvas, mPaint);
             mSnake.draw(mCanvas, mPaint);
