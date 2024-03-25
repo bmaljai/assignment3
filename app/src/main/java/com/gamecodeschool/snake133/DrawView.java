@@ -15,17 +15,23 @@ public class DrawView extends View {
 
     @Override
     public void onDraw(Canvas canvas) {
+        //Placeholder code to write "Pause"
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(52f);
+        canvas.drawText("Pause",200, 800, paint);
+        //Placeholder code to draw the pause button
         paint.setColor(Color.BLACK);
         paint.setStrokeWidth(3);
+        canvas.drawRect(200,300,300,400,paint);
+
+        /* Code no currently being used/has  no use I  can  think of
         canvas.drawRect(30, 30, 80, 80, paint);
         paint.setStrokeWidth(0);
         paint.setColor(Color.CYAN);
         canvas.drawRect(33, 60, 77, 77, paint );
         paint.setColor(Color.YELLOW);
         canvas.drawRect(33, 33, 77, 60, paint );
-        paint.setColor(Color.BLACK);
-        paint.setTextSize(42f);
-        canvas.drawText("Hello World",200, 800, paint);
+*/
 
     }
 
