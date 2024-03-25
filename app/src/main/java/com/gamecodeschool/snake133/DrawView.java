@@ -19,6 +19,11 @@ public class DrawView extends View {
         paint.setColor(Color.WHITE);
         paint.setTextSize(52f);
         canvas.drawText("Pause",200, 800, paint);
+
+        //Placeholder code to write names
+        canvas.drawText("Bijan Maljai",650, 200,paint);
+        canvas.drawText("Tiglath Eashoian",650,300,paint);
+
         //Placeholder code to draw the pause button
         paint.setColor(Color.BLACK);
         paint.setStrokeWidth(3);
