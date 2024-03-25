@@ -201,17 +201,31 @@ class SnakeGame extends SurfaceView implements Runnable{
     }
 
 
+
     // Do all the drawing
     public void draw() {
         // Get a lock on the mCanvas
         if (mSurfaceHolder.getSurface().isValid()) {
             mCanvas = mSurfaceHolder.lockCanvas();
 
-            Bitmap texture = BitmapFactory.decodeResource(getResources(), R.drawable.texture);
-            Rect destRect = new Rect(0, 0, mCanvas.getWidth(), mCanvas.getHeight());
-            mCanvas.drawBitmap(texture, null, destRect, cBackground);
+
+//            BitmapFactory.Options options = new BitmapFactory.Options();
+//            options.inSampleSize = 100;
+//            Bitmap backgroundBuffer = Bitmap.createBitmap(mCanvas.getWidth(), mCanvas.getHeight(), Bitmap.Config.RGB_565);
+//            Canvas backgroundCanvas = new Canvas(backgroundBuffer);
+//            Bitmap texture = BitmapFactory.decodeResource(getResources(), R.drawable.texture, options);
+//            Rect destRect = new Rect(0, 0, backgroundCanvas.getWidth(), backgroundCanvas.getHeight());
+//            backgroundCanvas.drawBitmap(texture, null, destRect, null);
+//
+//            mCanvas.drawBitmap(backgroundBuffer, 0, 0, null);
+
+
+
+//            Bitmap texture = BitmapFactory.decodeResource(getResources(), R.drawable.texture);
+//            Rect destRect = new Rect(0, 0, mCanvas.getWidth(), mCanvas.getHeight());
+//            mCanvas.drawBitmap(texture, null, destRect, null);
             // Fill the screen with a color
-//            mCanvas.drawColor(Color.argb(255, 26, 128, 182));
+            mCanvas.drawColor(Color.argb(255, 26, 128, 182));
 
             // Set the size and color of the mPaint for the text
             mPaint.setColor(Color.argb(255, 255, 255, 255));
