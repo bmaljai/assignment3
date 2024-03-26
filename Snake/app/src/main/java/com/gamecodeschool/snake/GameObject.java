@@ -1,4 +1,4 @@
 package com.gamecodeschool.snake;
 
-public class GameObject {
+public abstract class GameObject {
 }

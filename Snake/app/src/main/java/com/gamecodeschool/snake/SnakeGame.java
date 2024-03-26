@@ -53,6 +53,8 @@ class SnakeGame extends SurfaceView implements Runnable{
     // And an apple
     private Apple mApple;
 
+    //And a pause button
+    private PauseButton mPauseButton;
 
     // This is the constructor method that gets called
     // from SnakeActivity
@@ -99,7 +101,7 @@ class SnakeGame extends SurfaceView implements Runnable{
         mPaintNames = new Paint();
         cBackground = new Paint();
 
-        // Call the constructors of our two game objects
+        // Call the constructors of our three(?) game objects
         mApple = new Apple(context,
                 new Point(NUM_BLOCKS_WIDE,
                         mNumBlocksHigh),
@@ -110,6 +112,12 @@ class SnakeGame extends SurfaceView implements Runnable{
                         mNumBlocksHigh),
                 blockSize);
 
+        mPauseButton= new PauseButton(context,
+                new Point(NUM_BLOCKS_WIDE
+                ,mNumBlocksHigh),
+                blockSize);
+        //TODO
+        mPauseButton.PauseCreate(NUM_BLOCKS_WIDE,mNumBlocksHigh);
     }
 
 
@@ -124,6 +132,8 @@ class SnakeGame extends SurfaceView implements Runnable{
 
         // Reset the mScore
         mScore = 0;
+
+
 
         // Setup mNextFrameTime so an update can triggered
         mNextFrameTime = System.currentTimeMillis();
@@ -245,8 +255,8 @@ class SnakeGame extends SurfaceView implements Runnable{
 
             //Draw the word pause for the pause button ///TODO make into a layout and
             //maybe its own class
-            mCanvas.drawText("Pause", 30, 350,mPaintNames);
-
+            //mCanvas.drawText("Pause", 30, 350,mPaintNames);
+            mPauseButton.draw(mCanvas,mPaint);
             // Draw the apple and the snake
             mApple.draw(mCanvas, mPaint);
             mSnake.draw(mCanvas, mPaint);

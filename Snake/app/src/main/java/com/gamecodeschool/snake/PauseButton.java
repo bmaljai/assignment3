@@ -10,12 +10,20 @@ import java.util.Random;
 class PauseButton {
 
     private Bitmap mBitmapPauseButton;
-    private Point location = new Point();
+    private Point location;
     PauseButton(Context context, Point mr, int s ){
 
-       mBitmapPauseButton=BitmapFactory.decodeResource(context.getResources(),R.drawable.Pause);
+       mBitmapPauseButton=BitmapFactory.decodeResource(context.getResources(),R.drawable.pause);
 
-       mBitmapPauseButton=Bitmap.createScaledBitmap(mBitmapPauseButton,s,s,false);
+       mBitmapPauseButton=Bitmap.createScaledBitmap(mBitmapPauseButton,s*4,s*4,false);
+
+
+    }
+    void PauseCreate(int w, int h){
+        location=new Point(w/2, h/2);
+    }
+    void draw(Canvas canvas,Paint paint){
+        canvas.drawBitmap(mBitmapPauseButton,location.x,location.y,paint);
     }
     // create an on touch event
 }
