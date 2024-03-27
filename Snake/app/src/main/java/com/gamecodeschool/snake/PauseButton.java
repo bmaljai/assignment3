@@ -8,7 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.view.MotionEvent;
 
-class PauseButton {
+class PauseButton implements BitmapObject {
 
     private Bitmap mBitmapPauseButton;
     private Point location;
@@ -28,9 +28,11 @@ class PauseButton {
         location.x*= positionScaling;
         location.y*= positionScaling;
     }
-    void draw(Canvas canvas,Paint paint){
+
+    public void draw(Canvas canvas, Paint paint){
         canvas.drawBitmap(mBitmapPauseButton,location.x,location.y,paint);
     }
+
     boolean onTouchEvent(MotionEvent event){
         float xDifference=Math.abs((float)location.x-event.getX()+200);
         float yDifference=Math.abs((float)location.y-event.getY());

@@ -1,6 +1,7 @@
 package com.gamecodeschool.snake;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
@@ -27,5 +28,7 @@ public abstract class HUDObject implements Drawable {
         this.xLoc = xLoc;
         this.yLoc = yLoc;
     }
+
+
 
 }
