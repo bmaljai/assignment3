@@ -14,9 +14,9 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import java.io.IOException;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Rect;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
 
 class SnakeGame extends SurfaceView implements Runnable{
 
@@ -46,12 +46,14 @@ class SnakeGame extends SurfaceView implements Runnable{
     private Paint mPaint;
     private Paint mPaintNames;
 
-    private Paint cBackground;
-
     // A snake ssss
     private Snake mSnake;
     // And an apple
     private Apple mApple;
+
+    private Scoreboard mScoreboard;
+    private Credits mCreditBejan;
+    private Credits mCreditTig;
 
 
     // This is the constructor method that gets called
@@ -97,7 +99,10 @@ class SnakeGame extends SurfaceView implements Runnable{
         mSurfaceHolder = getHolder();
         mPaint = new Paint();
         mPaintNames = new Paint();
-        cBackground = new Paint();
+
+
+
+
 
         // Call the constructors of our two game objects
         mApple = new Apple(context,
@@ -208,24 +213,21 @@ class SnakeGame extends SurfaceView implements Runnable{
         if (mSurfaceHolder.getSurface().isValid()) {
             mCanvas = mSurfaceHolder.lockCanvas();
 
+            Paint gradientBG = new Paint();
+            int startColor = Color.BLUE;
+            int endColor = Color.GREEN;
+            Shader linearGradient = new LinearGradient(
+                    0, 0, // Start point (x, y)
+                    mCanvas.getWidth(), mCanvas.getHeight(), // End point (x, y)
+                    startColor, // Gradient start color
+                    endColor, // Gradient end color
+                    Shader.TileMode.CLAMP // Tiling mode
+            );
+            gradientBG.setShader(linearGradient);
 
-//            BitmapFactory.Options options = new BitmapFactory.Options();
-//            options.inSampleSize = 100;
-//            Bitmap backgroundBuffer = Bitmap.createBitmap(mCanvas.getWidth(), mCanvas.getHeight(), Bitmap.Config.RGB_565);
-//            Canvas backgroundCanvas = new Canvas(backgroundBuffer);
-//            Bitmap texture = BitmapFactory.decodeResource(getResources(), R.drawable.texture, options);
-//            Rect destRect = new Rect(0, 0, backgroundCanvas.getWidth(), backgroundCanvas.getHeight());
-//            backgroundCanvas.drawBitmap(texture, null, destRect, null);
-//
-//            mCanvas.drawBitmap(backgroundBuffer, 0, 0, null);
-
-
-
-//            Bitmap texture = BitmapFactory.decodeResource(getResources(), R.drawable.texture);
-//            Rect destRect = new Rect(0, 0, mCanvas.getWidth(), mCanvas.getHeight());
-//            mCanvas.drawBitmap(texture, null, destRect, null);
+            mCanvas.drawRect(0, 0, mCanvas.getWidth(), mCanvas.getHeight(), gradientBG);
             // Fill the screen with a color
-            mCanvas.drawColor(Color.argb(255, 26, 128, 182));
+//            mCanvas.drawColor(Color.argb(255, 26, 128, 182));
 
             // Set the size and color of the mPaint for the text
             mPaint.setColor(Color.argb(255, 255, 255, 255));
@@ -237,11 +239,24 @@ class SnakeGame extends SurfaceView implements Runnable{
 
 
             // Draw the score
-            mCanvas.drawText("" + mScore, 20, 120, mPaint);
+//            mCanvas.drawText("" + mScore, 20, 120, mPaint);
+            mScoreboard = new Scoreboard(mPaint,mScore,mCanvas,20,120);
+            mScoreboard.draw();
+
+            String bejan = "Bejan Maljai";
+            String tig = "Tiglath Eashoian";
 
             // Draw the names in the top right
-            mCanvas.drawText("Bejan Maljai", 650, 120, mPaintNames);
-            mCanvas.drawText("Tiglath Eashoian", 530, 240, mPaintNames);
+//            mCanvas.drawText("Bejan Maljai", 650, 120, mPaintNames);
+//            mCanvas.drawText("Tiglath Eashoian", 530, 240, mPaintNames);
+            mCreditBejan = new Credits(mPaintNames,bejan,mCanvas,650,120);
+            mCreditTig = new Credits(mPaintNames,tig,mCanvas,530,240);
+            mCreditBejan.draw();
+            mCreditTig.draw();
+
+
+
+
 
             // Draw the apple and the snake
             mApple.draw(mCanvas, mPaint);
