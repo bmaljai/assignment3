@@ -32,12 +32,12 @@ class PauseButton {
         canvas.drawBitmap(mBitmapPauseButton,location.x,location.y,paint);
     }
     boolean onTouchEvent(MotionEvent event){
-        float xDifference=Math.abs((float)location.x-event.getX());
+        float xDifference=Math.abs((float)location.x-event.getX()+200);
         float yDifference=Math.abs((float)location.y-event.getY());
 
         switch (event.getAction()){
             case MotionEvent.ACTION_UP:
-                if (xDifference<200 && yDifference<200) {
+                if (xDifference<220 && yDifference<200) {
                     return true;
                 }
 
