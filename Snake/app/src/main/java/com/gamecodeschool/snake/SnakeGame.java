@@ -28,6 +28,9 @@ class SnakeGame extends SurfaceView implements Runnable{
     private volatile boolean mPlaying = false;
     private volatile boolean mPaused = true;
 
+    // Is the Snake dead?
+    private  boolean snakeDead=true;
+
     // for playing sound effects
     private SoundPool mSP;
     private int mEat_ID = -1;
@@ -116,7 +119,7 @@ class SnakeGame extends SurfaceView implements Runnable{
                 new Point(NUM_BLOCKS_WIDE
                 ,mNumBlocksHigh),
                 blockSize);
-        //TODO
+        //position the pause button
         mPauseButton.PauseCreate(NUM_BLOCKS_WIDE,mNumBlocksHigh);
     }
 
@@ -126,7 +129,7 @@ class SnakeGame extends SurfaceView implements Runnable{
 
         // reset the snake
         mSnake.reset(NUM_BLOCKS_WIDE, mNumBlocksHigh);
-
+        snakeDead=false;
         // Get the apple ready for dinner
         mApple.spawn();
 
@@ -204,7 +207,7 @@ class SnakeGame extends SurfaceView implements Runnable{
         if (mSnake.detectDeath()) {
             // Pause the game ready to start again
             mSP.play(mCrashID, 1, 1, 0, 0, 1);
-
+            snakeDead=true;
             mPaused =true;
         }
 
@@ -253,16 +256,14 @@ class SnakeGame extends SurfaceView implements Runnable{
             mCanvas.drawText("Bejan Maljai", 650, 120, mPaintNames);
             mCanvas.drawText("Tiglath Eashoian", 530, 240, mPaintNames);
 
-            //Draw the word pause for the pause button ///TODO make into a layout and
-            //maybe its own class
-            //mCanvas.drawText("Pause", 30, 350,mPaintNames);
+            //Draw the Pause button
             mPauseButton.draw(mCanvas,mPaint);
             // Draw the apple and the snake
             mApple.draw(mCanvas, mPaint);
             mSnake.draw(mCanvas, mPaint);
 
             // Draw some text while paused
-            if(mPaused){
+            if(snakeDead){
 
                 // Set the size and color of the mPaint for the text
                 mPaint.setColor(Color.argb(255, 255, 255, 255));
@@ -283,14 +284,34 @@ class SnakeGame extends SurfaceView implements Runnable{
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
+
             case MotionEvent.ACTION_UP:
-                if (mPaused) {
-                    mPaused = false;
-                    newGame();
+                if (mPauseButton.onTouchEvent(motionEvent)){
+                    if (mPaused){
+                        mPaused=false;
+                        resume();
+                        break;
+                    }
+                    else{
+                        //pause();
+                        mPaused=true;
+                    }
+                    // Don't want to process snake direction for this tap
+
+                    return true;
+                }
+                if (mPaused)  {
+                    if (snakeDead) {
+                        mPaused = false;
+                        snakeDead= false;
+                        newGame();
+                    }
 
                     // Don't want to process snake direction for this tap
                     return true;
                 }
+                //TODO listen for pause button touch/make it only work when the button itself is clicked
+
 
                 // Let the Snake class handle the input
                 mSnake.switchHeading(motionEvent);
