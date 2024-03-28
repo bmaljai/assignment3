@@ -225,21 +225,8 @@ class SnakeGame extends SurfaceView implements Runnable{
         if (mSurfaceHolder.getSurface().isValid()) {
             mCanvas = mSurfaceHolder.lockCanvas();
 
-            Paint gradientBG = new Paint();
-            int startColor = Color.BLUE;
-            int endColor = Color.GREEN;
-            Shader linearGradient = new LinearGradient(
-                    0, 0, // Start point (x, y)
-                    mCanvas.getWidth(), mCanvas.getHeight(), // End point (x, y)
-                    startColor, // Gradient start color
-                    endColor, // Gradient end color
-                    Shader.TileMode.CLAMP // Tiling mode
-            );
-            gradientBG.setShader(linearGradient);
-
-            mCanvas.drawRect(0, 0, mCanvas.getWidth(), mCanvas.getHeight(), gradientBG);
-            // Fill the screen with a color
-//            mCanvas.drawColor(Color.argb(255, 26, 128, 182));
+            Background backGround = new Background(Color.BLUE,Color.GREEN,mCanvas);
+            backGround.draw();
 
             // Set the size and color of the mPaint for the text
             mPaint.setColor(Color.argb(255, 255, 255, 255));
@@ -248,27 +235,16 @@ class SnakeGame extends SurfaceView implements Runnable{
             mPaintNames.setColor(Color.argb(255, 255, 255, 255));
             mPaintNames.setTextSize(60);
 
-
-
-            // Draw the score
-//            mCanvas.drawText("" + mScore, 20, 120, mPaint);
             mScoreboard = new Scoreboard(mPaint,mScore,mCanvas,20,120);
             mScoreboard.draw();
 
-            String bejan = "Bejan Maljai";
-            String tig = "Tiglath Eashoian";
-
             // Draw the names in the top right
-//            mCanvas.drawText("Bejan Maljai", 650, 120, mPaintNames);
-//            mCanvas.drawText("Tiglath Eashoian", 530, 240, mPaintNames);
-            mCreditBejan = new Credits(mPaintNames,bejan,mCanvas,650,120);
-            mCreditTig = new Credits(mPaintNames,tig,mCanvas,530,240);
+            mCreditBejan = new Credits(mPaintNames,"Bejan Maljai",mCanvas,650,120);
+            mCreditTig = new Credits(mPaintNames,"Tiglath Eashoian",mCanvas,530,240);
             mCreditBejan.draw();
             mCreditTig.draw();
 
             mPauseButton.draw(mCanvas,mPaint);
-
-
 
             // Draw the apple and the snake
             mApple.draw(mCanvas, mPaint);
