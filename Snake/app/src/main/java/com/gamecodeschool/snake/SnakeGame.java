@@ -233,14 +233,14 @@ class SnakeGame extends SurfaceView implements Runnable{
             mPaint.setTextSize(120);
 
             mPaintNames.setColor(Color.argb(255, 255, 255, 255));
-            mPaintNames.setTextSize(60);
+            mPaintNames.setTextSize(45);
 
             mScoreboard = new Scoreboard(mPaint,mScore,mCanvas,20,120);
             mScoreboard.draw();
 
             // Draw the names in the top right
-            mCreditBejan = new Credits(mPaintNames,"Bejan Maljai",mCanvas,650,120);
-            mCreditTig = new Credits(mPaintNames,"Tiglath Eashoian",mCanvas,530,240);
+            mCreditBejan = new Credits(mPaintNames,"Bejan Maljai",mCanvas,790,100);
+            mCreditTig = new Credits(mPaintNames,"Tiglath Eashoian",mCanvas,700,170);
             mCreditBejan.draw();
             mCreditTig.draw();
 
