@@ -1,4 +1,4 @@
-package com.gamecodeschool.snakegame;
+package com.gamecodeschool.snake;
 
 public interface FruitFactory {
     Fruit createFruit();

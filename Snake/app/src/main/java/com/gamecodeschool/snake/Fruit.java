@@ -1,4 +1,4 @@
-package com.gamecodeschool.snakegame;
+package com.gamecodeschool.snake;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;

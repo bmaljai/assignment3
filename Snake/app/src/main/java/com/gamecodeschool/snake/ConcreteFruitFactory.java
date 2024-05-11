@@ -1,4 +1,4 @@
-package com.gamecodeschool.snakegame;
+package com.gamecodeschool.snake;
 
 import android.content.Context;
 import android.graphics.Point;
@@ -16,7 +16,7 @@ public class ConcreteFruitFactory implements FruitFactory {
     public ConcreteFruitFactory(Context context, Point spawnRange, int size){
         // Initialize and add fruit types to the list
         fruits = new ArrayList<>();
-        fruits.add(new Apple(context, spawnRange, size));
+        fruits.add((Fruit) new Apple(context, spawnRange, size));
         fruits.add(new Banana(context, spawnRange, size));
 
         Log.d("FruitFactory", "Fruit Factory Initialized: " + fruits.size() + " fruits available.");
