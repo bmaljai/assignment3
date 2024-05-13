@@ -22,7 +22,7 @@ public class IceCube implements Fruit {
         mBitmapIce = BitmapFactory.decodeResource(context.getResources(), R.drawable.icecube);
         mBitmapIce = Bitmap.createScaledBitmap(mBitmapIce, s, s, false);
     }
-
+    // random comment
     @Override
     public void spawn() {
         Random random = new Random();
