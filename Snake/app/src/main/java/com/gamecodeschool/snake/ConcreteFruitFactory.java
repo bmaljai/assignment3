@@ -4,41 +4,39 @@ import android.content.Context;
 import android.graphics.Point;
 import android.util.Log;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
-
 public class ConcreteFruitFactory implements FruitFactory {
-    private final List<Fruit> fruits;
-    private int currentIndex = 0;
+    private final Context mContext;
+    private final Point mSpawnRange;
+    private final int mSize;
 
     public ConcreteFruitFactory(Context context, Point spawnRange, int size){
-        // Initialize and add fruit types to the list
-        fruits = new ArrayList<>();
-        fruits.add((Fruit) new Apple(context, spawnRange, size));
-        fruits.add(new Banana(context, spawnRange, size));
+        this.mContext = context;
+        this.mSpawnRange = spawnRange;
+        this.mSize = size;
 
-        Log.d("FruitFactory", "Fruit Factory Initialized: " + fruits.size() + " fruits available.");
-
+        Log.d("FruitFactory", "Fruit Factory Initialized");
     }
 
     @Override
-    public Fruit createFruit(){
-        // Get the current fruit from the list
-        Fruit fruit = fruits.get(currentIndex);
+    public Fruit createFruit(String type) {
 
-        Log.d("FruitFactory", "Current Index: " + currentIndex + ", Fruit: " + fruit.getClass().getSimpleName());
-
-
-        // Update the index to the next fruit, wrapping around if necessary
-        currentIndex = (currentIndex + 1) % fruits.size();
-
-        // Since fruits like Apple and Banana may need to be reinitialized or reset, we do that here
-        fruit.spawn();
-
-        return fruit;
+        switch(type.toLowerCase()){
+            case "apple":
+                return new Apple(mContext, mSpawnRange, mSize);
+            case "banana":
+                return new Banana(mContext, mSpawnRange, mSize);
+            case "grapes":
+                return new Grapes(mContext, mSpawnRange, mSize);
+            case "mango":
+                return new Mango(mContext, mSpawnRange, mSize);
+            case "ice-cube":
+                return new IceCube(mContext, mSpawnRange, mSize);
+            default:
+                return null;
+        }
     }
 }
-
-
